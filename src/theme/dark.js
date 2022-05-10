@@ -5,6 +5,7 @@ const Theme = createTheme({
     mode: "dark",
     text: {
       primary: "rgb(239,242,232)",
+      error: "#f44336",
     },
     background: {
       paper: "#1F2128",
@@ -12,6 +13,11 @@ const Theme = createTheme({
     },
     divider: "rgb(67,73,85)",
   },
+  typography: {
+    button: {
+      textTransform: "initial",
+    },
+  },
 });
-  
+
 export default Theme;
