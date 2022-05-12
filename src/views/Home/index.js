@@ -1,10 +1,17 @@
 import React from "react";
 import Container from "@mui/material/Container";
-import { NASA_LOGO } from "../../components/constants";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+import { NASA_LOGO } from "../../components/constants";
+import { changeWindowTitle } from "../../utils";
+import { useEffect } from "react";
+
 export default function Home() {
+  useEffect(() => {
+    changeWindowTitle("Nasa Universe");
+  }, []);
+
   return (
     <Container maxWidth="xl" sx={{ backgroundColor: "background.default" }}>
       <Typography align="center" variant="h5" m={2} color="text.primary">

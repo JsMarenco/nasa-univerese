@@ -1,5 +1,3 @@
-import { monthsInYear } from "date-fns/fp";
-
 export const returnDate = (objDate = "") => {
   const months = [
     "Jan",
@@ -35,4 +33,8 @@ export const returnDate = (objDate = "") => {
   finalDate = `${year}-${month}-${day}`;
 
   return finalDate;
+};
+
+export const changeWindowTitle = (new_title) => {
+  document.title = new_title;
 };

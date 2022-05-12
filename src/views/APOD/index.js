@@ -7,7 +7,7 @@ import CardTemplate from "./Card";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { returnDate } from "../../utils/index";
+import { returnDate, changeWindowTitle } from "../../utils/index";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -29,6 +29,8 @@ export default function APOD() {
 
       setLoading(false);
     };
+
+    changeWindowTitle("Picture of a day");
 
     getData();
   }, []);
@@ -53,6 +55,36 @@ export default function APOD() {
 
   return (
     <Container maxWidth="xl">
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Typography variant="h6" mb={2} align="center" color="text.primary">
+          Filter by day
+        </Typography>
+
+        <Stack sx={{ alignItems: "center" }} spacing={2} direction="row" mb={2}>
+          <MobileDatePicker
+            label="End date"
+            value={rawDate}
+            onChange={(newValue) => {
+              setRawDate(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+
+          <Button
+            startIcon={<SearchIcon />}
+            color="primary"
+            variant="outlined"
+            onClick={() => sendRequest()}
+          >
+            Search
+          </Button>
+
+          <Typography variant="subtitle1" color="text.error">
+            {errorMessage}
+          </Typography>
+        </Stack>
+      </LocalizationProvider>
+
       {loading ? (
         <Box
           sx={{
@@ -66,42 +98,7 @@ export default function APOD() {
         </Box>
       ) : (
         <Box>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Typography variant="h6" mb={2} align="center" color="text.primary">
-              You can also choose a specific day
-            </Typography>
-
-            <Stack
-              sx={{ alignItems: "center" }}
-              spacing={2}
-              direction="row"
-              mb={2}
-            >
-              <MobileDatePicker
-                label="End date"
-                value={rawDate}
-                onChange={(newValue) => {
-                  setRawDate(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-
-              <Button
-                startIcon={<SearchIcon />}
-                color="primary"
-                variant="outlined"
-                onClick={() => sendRequest()}
-              >
-                Get photo
-              </Button>
-
-              <Typography variant="subtitle1" color="text.error">
-                {errorMessage}
-              </Typography>
-            </Stack>
-
-            <CardTemplate pictureData={pictureData} />
-          </LocalizationProvider>
+          <CardTemplate pictureData={pictureData} />
         </Box>
       )}
     </Container>

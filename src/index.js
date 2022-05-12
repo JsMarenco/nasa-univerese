@@ -12,6 +12,7 @@ import dark from "./theme/dark";
 import Home from "./views/Home";
 import ErrorPage from "./views/ErrorPage";
 import APOD from "./views/APOD";
+import MasrRoverPhotos from "./views/MarsRoverPhotos";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,10 +25,9 @@ root.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/picture-of-the-day" element={<APOD />} />
+          <Route path="/mars-rover-photos" element={<MasrRoverPhotos />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-
-        <Footer />
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
