@@ -17,7 +17,7 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 
 export default function APOD() {
   const [pictureData, setPictureData] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [rawDate, setRawDate] = React.useState(new Date());
   const [errorMessage, setErrorMessage] = React.useState("");
 

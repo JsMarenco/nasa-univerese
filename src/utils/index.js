@@ -38,3 +38,13 @@ export const returnDate = (objDate = "") => {
 export const changeWindowTitle = (new_title) => {
   document.title = new_title;
 };
+
+export const getScreenWith = () => {
+  let width = window.screen.width;
+
+  if (width < 500) {
+    return true;
+  } else {
+    return false;
+  }
+};
