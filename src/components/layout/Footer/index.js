@@ -31,7 +31,12 @@ export default function Footer() {
       </Typography>
 
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          m: 2,
+        }}
       >
         <ButtonGroup variant="text" color="primary" aria-label="contact-link">
           <Button href={FACEBOOK_LINK} variant="outlined" sx={{ mx: 1 }}>

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -12,7 +12,7 @@ import dark from "./theme/dark";
 import Home from "./views/Home";
 import ErrorPage from "./views/ErrorPage";
 import APOD from "./views/APOD";
-import MasrRoverPhotos from "./views/MarsRoverPhotos";
+import MarsRoverPhotos from "./views/MarsRoverPhotos";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,9 +25,11 @@ root.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/picture-of-the-day" element={<APOD />} />
-          <Route path="/mars-rover-photos" element={<MasrRoverPhotos />} />
+          <Route path="/mars-rover-photos" element={<MarsRoverPhotos />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+
+        <Footer />
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
