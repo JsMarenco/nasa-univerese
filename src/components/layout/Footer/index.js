@@ -1,23 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import {
-  FACEBOOK_LINK,
-  GITHUB_LINK,
-  TWITTER_LINK,
-  INSTAGRAM_LINK,
-} from "../../constants";
 
 // ICONS
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import HomeIcon from '@mui/icons-material/Home';
+import ContactLinks from "../../../routes/ContactLinks";
 
 export default function Footer() {
+  let navidate = useNavigate()
+
   return (
     <Container maxWidth="xl">
       <Typography
@@ -39,20 +36,22 @@ export default function Footer() {
         }}
       >
         <ButtonGroup variant="text" color="primary" aria-label="contact-link">
-          <Button href={FACEBOOK_LINK} variant="outlined" sx={{ mx: 1 }}>
-            <FacebookIcon />
+          <Button startIcon={<ArrowBackIosIcon />} variant="contained" onClick={() => navidate(-1)} color="primary">
+            Back
           </Button>
 
-          <Button href={GITHUB_LINK} variant="outlined" sx={{ mx: 1 }}>
-            <GitHubIcon />
-          </Button>
+          {
+            ContactLinks().map((link, index) => {
+              return (
+                <Button key={`${link.href}_${index}`} onClick={() => window.open(link.href, "_blank")} variant="outlined" sx={{ mx: 1 }}>
+                  {link.icon}
+                </Button>
+              )
+            })
+          }
 
-          <Button href={INSTAGRAM_LINK} variant="outlined" sx={{ mx: 1 }}>
-            <InstagramIcon />
-          </Button>
-
-          <Button href={TWITTER_LINK} variant="outlined" sx={{ mx: 1 }}>
-            <TwitterIcon />
+          <Button startIcon={<HomeIcon />} variant="contained" onClick={() => navidate("/")} color="primary">
+            Home
           </Button>
         </ButtonGroup>
       </Box>

@@ -5,5 +5,6 @@
 }
 
 body {
-  background-color: #001E3C;
+  background-color: #313130;
+  user-select: none;
 }

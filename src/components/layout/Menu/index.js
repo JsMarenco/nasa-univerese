@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import MainRoutes from "../../../routes/MainRoutes.js";
 import AdditionalRoutes from "../../../routes/AdditionalRoutes.js";
@@ -16,6 +16,8 @@ import ContactLinks from "../../../routes/ContactLinks.js";
 import Typography from "@mui/material/Typography";
 
 export default function TemporaryDrawer() {
+  let navigate = useNavigate()
+
   const [state, setState] = React.useState({
     left: false,
   });
@@ -39,13 +41,12 @@ export default function TemporaryDrawer() {
     >
       <List>
         {MainRoutes().map((route, index) => (
-          <ListItem button key={route.label}>
+          <ListItem button key={route.label + index} onClick={() => navigate(route.href)}>
             <ListItemIcon>{route.icon}</ListItemIcon>
-            <Link style={{ textDecoration: "none" }} to={route.href}>
-              <Typography variant="body1" color="text.primary">
-                {route.label}
-              </Typography>
-            </Link>
+
+            <Typography variant="body1" color="text.primary">
+              {route.label}
+            </Typography>
           </ListItem>
         ))}
       </List>
@@ -54,20 +55,12 @@ export default function TemporaryDrawer() {
 
       <List>
         {AdditionalRoutes().map((route, index) => (
-          <a
-            style={{ textDecoration: "none" }}
-            href={route.href}
-            target="_blank"
-            rel="noreferrer"
-            key={route.label + index}
-          >
-            <ListItem button>
-              <ListItemIcon>{route.icon}</ListItemIcon>
-              <Typography variant="body1" color="text.primary">
-                {route.label}
-              </Typography>
-            </ListItem>
-          </a>
+          <ListItem key={route.label + index} button onClick={() => window.open(route.href, "_blank")}>
+            <ListItemIcon>{route.icon}</ListItemIcon>
+            <Typography variant="body1" color="text.primary">
+              {route.label}
+            </Typography>
+          </ListItem>
         ))}
       </List>
 
@@ -84,20 +77,12 @@ export default function TemporaryDrawer() {
 
       <List>
         {ContactLinks().map((route, index) => (
-          <a
-            style={{ textDecoration: "none" }}
-            href={route.href}
-            target="_blank"
-            rel="noreferrer"
-            key={route.label + index}
-          >
-            <ListItem button>
-              <ListItemIcon>{route.icon}</ListItemIcon>
-              <Typography variant="body1" color="text.primary">
-                {route.label}
-              </Typography>
-            </ListItem>
-          </a>
+          <ListItem button key={route.label + index} onClick={() => window.open(route.href, "_blank")}>
+            <ListItemIcon>{route.icon}</ListItemIcon>
+            <Typography variant="body1" color="text.primary">
+              {route.label}
+            </Typography>
+          </ListItem>
         ))}
       </List>
     </Box>
